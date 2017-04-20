@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UnrealPackageManager.FileSystem
 {
 	abstract class FileSystemItemBase : IFileSystemItem
 	{
 		protected string name;
-		protected string path;
+		protected IDirectory parent;
+
 
 		public string Name
 		{
@@ -19,13 +16,27 @@ namespace UnrealPackageManager.FileSystem
 			}
 		}
 
-
 		public string Path
 		{
 			get
 			{
-				return path;
+				return System.IO.Path.Combine(parent.Path, Name);
 			}
+		}
+
+		public IDirectory Parent
+		{
+			get
+			{
+				return parent;
+			}
+		}
+
+
+		public FileSystemItemBase(string name, IDirectory parent)
+		{
+			this.name = name;
+			this.parent = parent;
 		}
 	}
 }

@@ -2,7 +2,7 @@
 using CommandLine;
 using Ninject;
 
-namespace UnrealPackageManager
+namespace UnrealPackageManager.CommandOptions
 {
 	class Delegator<T> where T : new()
 	{

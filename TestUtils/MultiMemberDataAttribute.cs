@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Reflection;
 
-namespace UnrealPackageManager
+namespace UnrealPackageManager.TestUtils
 {
 	[Xunit.Sdk.DataDiscoverer("Xunit.Sdk.DataDiscoverer", "xunit.core")]
 	[AttributeUsage(AttributeTargets.Method, AllowMultiple = true, Inherited = true)]

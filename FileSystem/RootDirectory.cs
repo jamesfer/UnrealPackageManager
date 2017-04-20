@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace UnrealPackageManager.FileSystem
 {
-	/**
-	 * The lowest level of abstraction from the file system.
-	 */
-	interface IFileSystem
+	class RootDirectory : Directory
 	{
-		
+		string path;
+
+		public RootDirectory(string name, string path) : base(name, null)
+		{
+			this.path = path;
+		}
 	}
 }

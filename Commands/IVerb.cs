@@ -1,6 +1,6 @@
 ﻿using Ninject;
 
-namespace UnrealPackageManager
+namespace UnrealPackageManager.Commands
 {
 	interface IVerb
 	{

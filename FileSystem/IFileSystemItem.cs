@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace UnrealPackageManager.FileSystem
+﻿namespace UnrealPackageManager.FileSystem
 {
 	interface IFileSystemItem
 	{
+		IDirectory Parent
+		{
+			get;
+		}
+
 		string Name
 		{
 			get;

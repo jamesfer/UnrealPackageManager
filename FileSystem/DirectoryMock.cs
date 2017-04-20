@@ -10,11 +10,9 @@ namespace UnrealPackageManager.FileSystem
 	{
 		public List<IFileSystemItem> items;
 
-		public DirectoryMock(string name, string path, List<IFileSystemItem> items = null)
-		{
-			this.name = name;
-			this.path = path;
 
+		public DirectoryMock(string name, IDirectory parent, List<IFileSystemItem> items = null) : base(name, parent)
+		{
 			if (items != null)
 			{
 				this.items = items;
@@ -33,7 +31,7 @@ namespace UnrealPackageManager.FileSystem
 				throw new Exception("Directory already exists");
 			}
 
-			DirectoryMock child = new DirectoryMock(childName, path + "/" + childName);
+			DirectoryMock child = new DirectoryMock(childName, this);
 			items.Add(child);
 			return child;
 		}

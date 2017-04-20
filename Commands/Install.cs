@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using CommandLine;
 using Ninject;
 
-namespace UnrealPackageManager
+namespace UnrealPackageManager.Commands
 {
 	class InstallVerb : IVerb
 	{

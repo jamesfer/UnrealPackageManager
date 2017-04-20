@@ -11,6 +11,13 @@ namespace UnrealPackageManager.FileSystem
 		public abstract List<IFileSystemItem> GetItems();
 		public abstract IDirectory CreateDirectory(string name);
 
+
+		public DirectoryBase(string name, IDirectory parent) : base(name, parent)
+		{
+
+		}
+
+
 		public List<IDirectory> GetDirectories()
 		{
 			List<IDirectory> dirs = new List<IDirectory>();
@@ -24,7 +31,6 @@ namespace UnrealPackageManager.FileSystem
 			return dirs;
 		}
 
-
 		public IDirectory FindDirectory(string name)
 		{
 			foreach (IDirectory dir in GetDirectories())
@@ -37,7 +43,6 @@ namespace UnrealPackageManager.FileSystem
 
 			return null;
 		}
-
 
 		public List<IFile> GetFiles()
 		{
