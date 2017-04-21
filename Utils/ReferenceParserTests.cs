@@ -3,12 +3,12 @@ using Xunit;
 using Xunit.Abstractions;
 using UnrealPackageManager.TestUtils;
 
-namespace UnrealPackageManager
+namespace UnrealPackageManager.Utils
 {
-	public class TestPackageResolver
+	public class TestReferenceParser
 	{
 		private readonly ITestOutputHelper output;
-		PackageResolver resolver = new PackageResolver();
+		ReferenceParser parser = new ReferenceParser();
 
 		public static string[] References = new string[]
 		{
@@ -83,7 +83,7 @@ namespace UnrealPackageManager
 		[MultiMemberData("References", "Owners")]
 		public void CanIdentifyOwner(string reference, string owner)
 		{
-			string result = resolver.ResolvePackageReference(reference).RequestedPackage.Owner;
+			string result = parser.ParseReference(reference).RequestedPackage.Owner;
             Assert.StrictEqual(owner, result);
         }
 
@@ -91,7 +91,7 @@ namespace UnrealPackageManager
 		[MultiMemberData("References", "Names")]
 		public void CanIdentifyName(string reference, string name)
 		{
-			string result = resolver.ResolvePackageReference(reference).RequestedPackage.Name;
+			string result = parser.ParseReference(reference).RequestedPackage.Name;
 			Assert.StrictEqual(name, result);
 		}
 
@@ -99,7 +99,7 @@ namespace UnrealPackageManager
 		[MultiMemberData("References", "Sources")]
 		public void CanIdentifySource(string reference, PackageSource source)
 		{
-			PackageSource result = resolver.ResolvePackageReference(reference).RequestedPackage.Source;
+			PackageSource result = parser.ParseReference(reference).RequestedPackage.Source;
 			Assert.StrictEqual(source, result);
 		}
 
@@ -107,7 +107,7 @@ namespace UnrealPackageManager
 		[MultiMemberData("References", "Methods")]
 		public void CanIdentifyMethod(string reference, PackageRequestMethod method)
 		{
-			PackageRequestMethod result = resolver.ResolvePackageReference(reference).Method;
+			PackageRequestMethod result = parser.ParseReference(reference).Method;
 			Assert.StrictEqual(method, result);
 		}
 
@@ -116,7 +116,7 @@ namespace UnrealPackageManager
 		{
 			string reference = "/username/";
 			Assert.Throws<PackageReferenceParseException>(() => {
-				resolver.ResolvePackageReference(reference);
+				parser.ParseReference(reference);
 				});
 		}
 	}

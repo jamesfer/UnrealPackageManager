@@ -1,8 +1,9 @@
 ﻿using System;
 using CommandLine;
 using Ninject;
+using UnrealPackageManager.DI;
 
-namespace UnrealPackageManager.CommandOptions
+namespace UnrealPackageManager.Commands
 {
 	class Delegator<T> where T : new()
 	{
@@ -22,7 +23,7 @@ namespace UnrealPackageManager.CommandOptions
 			IVerb verb = options as IVerb;
 			if (verb != null)
 			{
-				IKernel kernel = new StandardKernel();
+				IKernel kernel = UPMKernel.Make();
 				verb.Execute(kernel);
 			}
 			else

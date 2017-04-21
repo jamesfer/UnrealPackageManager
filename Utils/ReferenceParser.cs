@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using UnrealPackageManager.Core;
 
-namespace UnrealPackageManager
+namespace UnrealPackageManager.Utils
 {
-	class PackageResolver
+	class ReferenceParser
 	{
-		public static string PackageRegexString = @"^(?'method'(https?|git))?(:\/\/|@)?(?'source'(github|bitbucket))(\.org|\.com)?[\/:](?'owner'[^\/]*)[\/](?'name'[^.]*)";
-
+		// public static string PackageRegexString = @"^(?'method'(https?|git))?(:\/\/|@)?(?'source'(github|bitbucket))(\.org|\.com)?[\/:](?'owner'[^\/]*)[\/](?'name'[^.]*)";
+		public static string PackageRegexString = @"^(https?:\/\/(www\.)?|git@)?(?'source'(github|bitbucket))?((\.org|\.com)[\/:])?(?'owner'[^\/]+)\/(?'name'(?!(\n|\.)).+)";
 		private Regex PackageRegex = new Regex(PackageRegexString);
 
 		// Transforms an abstract package reference into a normalized address
@@ -18,7 +19,7 @@ namespace UnrealPackageManager
 		//   https://github.com/{UserName||OrgName}/{RepositoryName}.git
 		//   git@bitbucket.org:{UserName||OrgName}/{RepositoryName}.git
 		//   github/{UserName||OrgName}/{RepositoryName}
-		public PackageRequest ResolvePackageReference(string reference)
+		public PackageReference ParseReference(string reference)
 		{
 			Match m = PackageRegex.Match(reference);
 			if (m.Value == String.Empty)

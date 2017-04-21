@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnrealPackageManager
+namespace UnrealPackageManager.Operations
 {
 	/**
 	 * Is responsible for downloading modules from an online repository source and install them locally.
@@ -20,10 +20,10 @@ namespace UnrealPackageManager
 			this.project = project;
 		}
 
-		public void Install(string moduleRef)
+		public void Install(string packageString)
 		{
 			// Parse the package ref
-			PackageRequest packageRequest = resolver.ResolvePackageReference(moduleRef);
+			PackageRequest packageRequest = resolver.ResolvePackageReference(packageString);
 
 			Console.WriteLine("Installing package: " + packageRequest.RequestedPackage.Name);
 

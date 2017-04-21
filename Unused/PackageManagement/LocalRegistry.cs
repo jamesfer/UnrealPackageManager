@@ -11,9 +11,9 @@ namespace UnrealPackageManager.PackageManagement
 {
 	class LocalRegistry : IRegistry
 	{
-		protected PackageResolver resolver;
-		protected IDirectory sourceDir;
-		protected List<PackageRepository> repositories;
+		private PackageResolver resolver;
+		private IDirectory sourceDir;
+		private List<PackageRepository> repositories;
 
 		protected List<PackageRepository> Repositories
 		{
@@ -82,7 +82,7 @@ namespace UnrealPackageManager.PackageManagement
 				destination = sourceDir.CreateDirectory(request.RequestedPackage.Name);
 			}
 
-			Repository.Clone(request.CloneUrl, destination.Path);		
+			Repository.Clone(request.CloneUrl, destination.Path);
 		}
 
 
@@ -107,7 +107,7 @@ namespace UnrealPackageManager.PackageManagement
 			return repos;
 		}
 
-		
+
 		private PackageRepository LoadFromDirectory(IDirectory dir)
 		{
 			PackageReference reference = null;
@@ -119,7 +119,7 @@ namespace UnrealPackageManager.PackageManagement
 				{
 					PackageRequest req = resolver.ResolvePackageReference(remote.Url);
 					reference = req.RequestedPackage;
-					break;	
+					break;
 				}
 			}
 

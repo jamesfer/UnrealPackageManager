@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnrealPackageManager
+namespace UnrealPackageManager.Core
 {
 	public enum PackageSource {
 		Github,
@@ -31,7 +31,7 @@ namespace UnrealPackageManager
 			{
 				StringBuilder builder = new StringBuilder();
 				builder.Append("https://");
-				
+
 				switch (Source)
 				{
 					case PackageSource.Github:
